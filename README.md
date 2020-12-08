@@ -23,9 +23,10 @@ Pls. note: everything you write down is visible to everyone. So, pls. keep in mi
 - no bank account
 - no personal photo
 
-###Present customer
+### Present customer
  Niuniu  
-###Latest news  
+ 
+### Latest news  
  1. Customer is allowed to keep one pet.
  2. Customer is allowed to jump high.
 
