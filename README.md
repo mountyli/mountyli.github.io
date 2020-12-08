@@ -13,7 +13,7 @@ You may wanna tell me something. Pls. write it down here and I will reply you so
 			<p> <b>Mb:1391*****86</b></p>
 		</td>
 		<td width="30%">
-			<img src="/Badmt1.jpg" width="100%">
+			<img src="Badmt1.jpg" width="100%">
 		</td>
 	</tr>
 </table>
