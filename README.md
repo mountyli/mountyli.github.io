@@ -13,7 +13,7 @@ You may wanna tell me something. Pls. write it down here and I will reply you so
 			<p> <b>Mb:1391*****86</b></p>
 		</td>
 		<td width="30%">
-			<img src="/badmt1.jpg" width="100%">
+			<img src="/Badmt1.jpg" width="100%">
 		</td>
 	</tr>
 </table>
@@ -30,7 +30,7 @@ Pls. note: everything you write down is visible to everyone. So, pls. keep in mi
  1. Customer is allowed to keep one pet.
  2. Customer is allowed to jump high.
 
-![Image](badmt1.jpg)
+![Image](Badmt1.jpg)
 
 ### Support or Contact
 
