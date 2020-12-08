@@ -1,23 +1,35 @@
-## Welcome to Mounty Webpage
+## Welcome to Mounty's Cabin
 
-Yes, that is my page, my own page. 
-You may wanna tell me something. Pls. write it down here and I will read and reply you soon.
+It is warm and clean. Hope you like it.
+You may wanna tell me something. Pls. write it down here and I will reply you soon.
 
-You can use the [Baidu](https://baidu.com) to search.
-
-
-### I am trying to build my page. 
-
-Pls. note: everything you write down is visible to everyone.
+<table border="0">
+	<tr>
+		<td width="70%">
+			<h1> Address</h1>
+			<p> <b>Beiyuanjiayuan Moliyuan</b></p>
+			<p> <b>Beijing City</b></p>
+			<p> <b>China</b></p>
+			<p> <b>Mb:1391*****86</b></p>
+		</td>
+		<td width="30%">
+			<img src="/badmt1.jpg" width="100%">
+		</td>
+	</tr>
+</table>
+	
+Pls. note: everything you write down is visible to everyone. So, pls. keep in mind that:
 - no personal information
 - no bank account
 - no personal photo
 
-### The history of Badminton
-## The World Badminton Federation
-# How can I do an English presentation? 这是个问题。
+###Present customer
+ Niuniu  
+###Latest news  
+ 1. Customer is allowed to keep one pet.
+ 2. Customer is allowed to jump high.
 
-![Image](DSC04537.jpg)
+![Image](badmt1.jpg)
 
 ### Support or Contact
 
