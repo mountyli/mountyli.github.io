@@ -17,6 +17,7 @@ Pls. note: everything you write down is visible to everyone.
 ## The World Badminton Federation
 # How can I do an English presentation? 这是个问题。
 
+[Image](DSC04537.jpg)
 
 ### Support or Contact
 
