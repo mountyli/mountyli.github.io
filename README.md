@@ -32,6 +32,14 @@ Pls. note: everything you write down is visible to everyone. So, pls. keep in mi
 
 ![Image](Badmt1.jpg)
 
+Thanks for the following resources
+[CSDN link1:如何使用github建立网页链接](https://blog.csdn.net/hohaizx/article/details/85066248)
+[csdn link2：使用jakjll&liquid管理博客&加载动态内容](https://blog.csdn.net/u012168038/article/details/77715439?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-5.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-5.control)
+[英文内容，使用jakyll建立网页github page](http://jmcglone.com/guides/github-pages/)
+reference blog
+[中文，jackyll建站详解](https://www.cnblogs.com/doublesand/p/9626412.html)
+[interesting](http://rosesnow.top/)
+
 ### Support or Contact
 
 Pls. contact me by 1391*****86.
