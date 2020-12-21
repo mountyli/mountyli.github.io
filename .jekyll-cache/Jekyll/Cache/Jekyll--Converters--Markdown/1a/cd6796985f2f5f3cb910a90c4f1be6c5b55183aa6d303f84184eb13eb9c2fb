@@ -1,0 +1,284 @@
+I"�0<p><img src="http://upload-images.jianshu.io/upload_images/2556999-d5f8ac8600b233a9.gif?imageMogr2/auto-orient/strip" alt="" />
+#写在前面
+今天周六，我又来分享知识啦。最近一直在忙项目，所以趁着这个周末，<strong>喝着咖啡，听着音乐，敲着代码就把做项目的知识点总结给大家，简直不要太惬意</strong>，哈哈。</p>
+
+<p>先从我做的功能界面开始说起：</p>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/2556999-00bbbdcdd7beb103.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+
+<p>本篇主要介绍的就是图中红框标记的<strong>搜索自动匹配功能</strong>。仔细想一想，有木有很熟悉，对，这功能其实就是跟你每天百度、谷歌这样的搜索功能一样。所以下面我会分享一些知识点并写个例子来实现这样的功能。</p>
+
+<p>#每天都用到的搜索自动匹配功能</p>
+<blockquote>
+  <p>百度的搜索框(默认显示四条数据)</p>
+</blockquote>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/2556999-b2d81b364dd53c58.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+
+<blockquote>
+  <p>美团搜索框</p>
+</blockquote>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/2556999-603bde9f9d0a632a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="美团.jpg" /></p>
+
+<blockquote>
+  <p>淘宝搜索框</p>
+</blockquote>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/2556999-07465fefe6446770.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+
+<p>首先，大概过程肯定是这样的：<strong>先从输入框中输入关键字，然后根据关键字在缓存或数据库取数据返回显示在下方区域。</strong></p>
+
+<p>#重点知识汇总
+<strong>要实现此功能，JQuery+ajax是必备</strong>。这个功能需要服务端配合。客户端通过ajax从服务端取得的数据。下面，我写个<strong>简书搜索自动匹配</strong>的例子，数据是事先定义好在脚本里的，当然，如果我有访问简书数据库的权限和账号密码，就可以动态的获取实时数据了。</p>
+
+<p>开始之前，先给大家普及一下例子中用到的重点知识。</p>
+<blockquote>
+  <p><strong>知识点一</strong></p>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>keydown(function(e){}
+</code></pre></div></div>
+<p><em>这个keydown函数是当按下按键时触发事件，比如改变文本域的颜色。</em>
+比如这段代码：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;html&gt;
+&lt;head&gt;
+&lt;script type="text/javascript" src="/jquery/jquery.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+$(document).ready(function(){
+  $("input").keydown(function(){
+    $("input").css("background-color","#FFFFCC");
+  });
+  $("input").keyup(function(){
+    $("input").css("background-color","#D6D6FF");
+  });
+});
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+Enter your name: &lt;input type="text" /&gt;
+&lt;p&gt;当发生 keydown 和 keyup 事件时，输入域会改变颜色。请试着在其中输入内容。&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre></div></div>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/2556999-dacb3a94db66e194.gif?imageMogr2/auto-orient/strip" alt="" /></p>
+
+<p><em>变量e表示发生击键事件，寻找是哪个键被按下，要使用which这个属性。</em></p>
+
+<blockquote>
+  <p><strong>知识点二</strong></p>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> var keycode = e.which ? e.which : e.keyCode;
+</code></pre></div></div>
+<p><em>这句代码是为了兼容浏览器按键事件对象的按键码属性， 如IE中，只有keyCode属性，而FireFox中有which和charCode属性，Opera中有keyCode和which属性等。</em></p>
+
+<blockquote>
+  <p><strong>知识点三</strong></p>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if(keycode == 38){}
+</code></pre></div></div>
+<p>常用按键码与按键关系对应表</p>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/2556999-27f4800ca42ef14c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+
+<blockquote>
+  <p><strong>知识点四</strong></p>
+</blockquote>
+
+<p><em>onKeyUp 事件：onkeyup 事件会在键盘按键被松开时发生。</em></p>
+
+<blockquote>
+  <p><strong>知识点五</strong></p>
+</blockquote>
+
+<p><em>blur() 方法:当失去焦点 (blur) 时触发事件，比如输入域失去焦点改变其颜色。
+removeClass() 方法:从被选元素移除一个或多个类。
+addClass()方法：向被选元素添加一个或多个类。</em></p>
+
+<p>#整体思路及完整代码：
+<strong>首先在输入框上注册keyup事件，然后在事件中获取我实现定义的data对象数组(一般实时数据通过ajax获取json对象）。取得数据后，在下方区域就可以显示数据了，当我们点击每一项的时候，就可以响应事件。同时根据索引值来调整背景高亮。</strong></p>
+
+<p>html代码：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%&gt;
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;html&gt;
+ &lt;head&gt;
+  &lt;title&gt;简书自动搜索功能例子&lt;/title&gt;
+  &lt;meta name="Author" content="wblearn"&gt;
+  &lt;meta name="Keywords" content="http://www.jianshu.com/users/48599dc7ef1b/latest_articles"&gt;
+  &lt;meta name="Description" content="简书自动搜索功能例子"&gt;
+  &lt;meta http-equiv="content-type" content="text/html; charset=UTF-8" /&gt;
+  &lt;link rel="stylesheet" media="all" href="http://cdn-qn0.jianshu.io/assets/base-00828532d00225531ad20ff45bf311ea.css"&gt;
+  &lt;link rel="stylesheet" media="all" href="http://cdn-qn0.jianshu.io/assets/reading-note-31f4bce318acdaac0a693701a57737e3.css"&gt;
+  &lt;link rel="stylesheet" media="all" href="http://cdn-qn0.jianshu.io/assets/base-read-mode-5f4051bc94fc595e8bc00821aae6c3e1.css"&gt;
+  &lt;script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.js"&gt;&lt;/script&gt;
+  &lt;script src="http://cdn-qn0.jianshu.io/assets/modernizr-613ea63b5aa2f0e2a1946e9c28c8eedb.js"&gt;&lt;/script&gt;
+  &lt;style type="text/css"&gt;
+    #container{
+        position:absolute;
+        left:50%;
+        top: 40%;
+    }
+    #content{
+        float:left;
+        position:relative;
+        right:50%;
+    }
+    input{
+        border:0;
+        width:288px;
+        height:30px;
+        font-size:16px;
+        padding:0 5px;
+        line-height:30px;
+    }
+    .item{
+        padding:3px 5px;
+        cursor:pointer;
+    }
+    .addbg{
+        background:#87A900;
+    }
+    .first{
+        border:solid #87A900 2px;
+        width:300px;
+    }
+    #append{
+        border:solid #87A900 2px;
+        border-top:0;
+        display:none;
+    }
+
+img {
+    max-width: 100%;
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    border: 0;
+    -ms-interpolation-mode: bicubic;
+}
+
+font{
+	margin-left: 20px;
+    margin: 10px 0;
+    font-family: inherit;
+    font-weight: bold;
+    line-height: 20px;
+    color: inherit;
+    text-rendering: optimizelegibility;
+}
+  &lt;/style&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+    &lt;div id="container"&gt;
+    &lt;div id="content"&gt;
+        &lt;div class="first"&gt;&lt;input id="kw" onKeyup="getContent(this);" /&gt;&lt;/div&gt;
+        &lt;div id="append"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;/div&gt;
+ &lt;/body&gt;
+&lt;/html&gt;
+</code></pre></div></div>
+
+<p>js代码：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;script type="text/javascript"&gt;
+var data = [
+	"![](http://upload-images.jianshu.io/upload_images/2556999-22446bcad2b99d1b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)"+"  &lt;font&gt;简书IT·互联网专题&lt;/font&gt;",
+    "![](http://upload-images.jianshu.io/upload_images/2556999-353d731adf3d34b5?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)"+"  &lt;font&gt;简书IT·互联网主编: 向右奔跑&lt;/font&gt;",
+    "![](http://upload-images.jianshu.io/upload_images/2556999-8d748c1a7d13141f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)"+"  &lt;font&gt;简书程序员专题&lt;/font&gt;",
+    "![](http://upload-images.jianshu.io/upload_images/2556999-3c4eb4a2985e9153.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)"+"  &lt;font&gt;简书程序员主编: 小彤花园&lt;/font&gt;",
+    "![](http://upload-images.jianshu.io/upload_images/2556999-2a1db48c8c206301.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)"+"  &lt;font&gt;简书连载小说专题&lt;/font&gt;",
+    "![](http://upload-images.jianshu.io/upload_images/2556999-7dc7674754b2227e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)"+"  &lt;font&gt;简书连载小说主编: 一鸣&lt;/font&gt;",
+    "![](http://upload-images.jianshu.io/upload_images/2556999-b4940e07ef6bbe3f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)"+"  &lt;font&gt;简书诗专题&lt;/font&gt;",
+    "![](http://upload-images.jianshu.io/upload_images/2556999-f90e0cb9a13c11db.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)"+"  &lt;font&gt;简书诗主编：北海源&lt;/font&gt;",
+    "![](http://upload-images.jianshu.io/upload_images/2556999-bad95d5bf57a8399.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)"+"  &lt;font&gt;简书其他专题&lt;/font&gt;",
+    "![](http://upload-images.jianshu.io/upload_images/2556999-90cdc692578d6c92?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)"+"  &lt;font&gt;简书其他主编&lt;/font&gt;"
+];
+$(document).ready(function(){
+    $(document).keydown(function(e){
+        e = e || window.event;
+        var keycode = e.which ? e.which : e.keyCode;
+        if(keycode == 38){
+            if(jQuery.trim($("#append").html())==""){
+                return;
+            }
+            movePrev();
+        }else if(keycode == 40){
+            if(jQuery.trim($("#append").html())==""){
+                return;
+            }
+            $("#kw").blur();
+            if($(".item").hasClass("addbg")){
+                moveNext();
+            }else{
+                $(".item").removeClass('addbg').eq(0).addClass('addbg');
+            }
+           
+        }else if(keycode == 13){
+            dojob();
+        }
+    });
+
+    var movePrev = function(){
+        $("#kw").blur();
+        var index = $(".addbg").prevAll().length;
+        if(index == 0){
+            $(".item").removeClass('addbg').eq($(".item").length-1).addClass('addbg');
+        }else{
+            $(".item").removeClass('addbg').eq(index-1).addClass('addbg');
+        }
+    }
+   
+    var moveNext = function(){
+        var index = $(".addbg").prevAll().length;
+        if(index == $(".item").length-1){
+            $(".item").removeClass('addbg').eq(0).addClass('addbg');
+        }else{
+            $(".item").removeClass('addbg').eq(index+1).addClass('addbg');
+        }
+       
+    }
+   
+    var dojob = function(){
+        $("#kw").blur();
+        var value = $(".addbg").text();
+        $("#kw").val(value);
+        $("#append").hide().html("");
+    }
+});
+function getContent(obj){
+    var kw = jQuery.trim($(obj).val());
+    if(kw == ""){
+        $("#append").hide().html("");
+        return false;
+    }
+    var html = "";
+    for (var i = 0; i &lt; data.length; i++) {
+        if (data[i].indexOf(kw) &gt;= 0) {
+            html = html + "&lt;div class='item' onmouseenter='getFocus(this)' onClick='getCon(this);'&gt;" + data[i] + "&lt;/div&gt;"
+        }
+    }
+    if(html != ""){
+        $("#append").show().html(html);
+    }else{
+        $("#append").hide().html("");
+    }
+}
+function getFocus(obj){
+    $(".item").removeClass("addbg");
+    $(obj).addClass("addbg");
+}
+function getCon(obj){
+    var value = $(obj).text();
+    $("#kw").val(value);
+    $("#append").hide().html("");
+}
+&lt;/script&gt;
+</code></pre></div></div>
+<p>#写在最后
+以上就是我总结分享搜索自动匹配功能的全部内容，当然，界面我还可以做得更美观，功能可以做的更完善。今天先到这里，下次见(持续更新中……)</p>
+:ET
