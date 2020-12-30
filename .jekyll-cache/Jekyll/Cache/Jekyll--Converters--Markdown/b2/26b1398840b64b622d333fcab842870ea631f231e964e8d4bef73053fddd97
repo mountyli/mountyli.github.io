@@ -1,0 +1,31 @@
+I"Ì<h1>This is a page telling you about me</h1>
+
+<p>It is warm and clean. Hope you like it.
+You may wanna tell me something. Pls. write it down here and I will reply you soon.</p>
+
+<table border="0">
+	<tr>
+		<td width="70%">
+			<h1> Address</h1>
+			<p> <b>Beiyuanjiayuan Moliyuan</b></p>
+			<p> <b>Beijing City</b></p>
+			<p> <b>China</b></p>
+			<p> <b>Mb:1391*****86</b></p>
+		</td>
+		<td width="30%">
+			<img src="Badmt1.jpg" width="100%" />
+		</td>
+	</tr>
+</table>
+
+<h3 id="present-customer">Present customer</h3>
+<p>Niuniu</p>
+
+<h3 id="latest-news">Latest news</h3>
+<ol>
+  <li>Customer is allowed to keep one pet.</li>
+  <li>Customer is allowed to jump high.</li>
+</ol>
+
+<p><img src="Badmt1.jpg" alt="Image" /></p>
+:ET

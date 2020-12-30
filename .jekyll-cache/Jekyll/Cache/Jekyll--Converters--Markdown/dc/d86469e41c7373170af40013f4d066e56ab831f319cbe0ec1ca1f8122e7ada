@@ -1,0 +1,27 @@
+I"ç<p><br />
+<br /></p>
+<h1>This is Mounty. </h1>
+
+<p>Some personal information below.</p>
+
+<table border="0">
+	<tr>
+		<td width="20%">
+			<h1> Contact</h1>
+			<p> <b>Address: Beiyuanjiayuan Moliyuan</b></p>
+			<p> <b>Beijing City</b></p>
+			<p> <b>China</b></p>
+			<p> <b>Mb:1391*****86</b></p>
+			<p> <b>QQ: 106066572</b></p>
+		</td>
+		<td width="20%">
+			<img src="Badmt1.jpg" width="100%" />
+		</td>
+		<td width="60%">
+			<h1> </h1>
+		</td>
+	</tr>
+</table>
+
+<!--![Image](Badmt1.jpg)-->
+:ET
