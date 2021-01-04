@@ -1,0 +1,10 @@
+<nav>
+	{% for item in site.data.categorylist %}
+		<a href="{{item.link}}" style="height:25px;width:120px;
+    float:left"{% if page.url == item.link %} class="current" {% endif %}>
+		* {{item.name}}
+		</a>
+	
+	{% endfor %}
+	
+</nav>

@@ -1,7 +1,7 @@
 ---
 layout: post
 author: Mounty
-tag: 数论
+category: other
 tag: 整除
 ---
-just for test
+just for test, category other

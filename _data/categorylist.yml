@@ -1,0 +1,10 @@
+- name: Math
+  link: /category_math.html
+- name: Life
+  link: /category_life.html
+- name: Software
+  link: /category_sw.html
+- name: Hardware
+  link: /category_hw.html
+- name: Other
+  link: /category_other.html

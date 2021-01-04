@@ -1,15 +1,19 @@
 ---
 layout: blogdefault
-title: Blog
+title: category_math
 ---
 <br/>
-<h1>Here my world starts</h1>
+<h1>Do you like Math?</h1>
 
 <u1>
   {% for post in site.posts %}
+   {%if post.category=="Math" %} 
     <li>
 	  <h2><a href="{{ post.url }}">{{post.title}}</a></h2>
+	  <h2>{{post.date}}</h2>
 	  <p>{{post.excerpt}}</p>
 	</li>
+	 {% endif %}
+	
   {% endfor %}
 </u1>

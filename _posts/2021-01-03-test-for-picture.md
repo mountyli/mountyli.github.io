@@ -1,8 +1,11 @@
 ---
 layout: post
 author: Mounty
-tag: Life
+category: Software
+date: 2021 01 03
 ---
+
+test for inserting picture by markdown or html
 抑郁症
 
 ![My helpful screenshot](/assets/image/cat.png)
