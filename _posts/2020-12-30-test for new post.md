@@ -1,7 +1,7 @@
 ---
 layout: post
 author: Mounty
-category: other
+category: Other
 tag: 整除
 ---
 just for test, category other

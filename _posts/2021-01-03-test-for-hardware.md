@@ -2,7 +2,7 @@
 layout: post
 author: Mounty
 category: Hardware
-date: 2021 01 03
+
 ---
 
 test for inserting picture by markdown or html
